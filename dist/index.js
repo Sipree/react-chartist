@@ -93,6 +93,7 @@ var ChartistGraph = (function (_React$Component) {
 
 ChartistGraph.propTypes = {
   type: _react2['default'].PropTypes.string.isRequired,
+  id: _react2['default'].PropTypes.string,
   data: _react2['default'].PropTypes.object.isRequired,
   options: _react2['default'].PropTypes.object,
   responsiveOptions: _react2['default'].PropTypes.array
