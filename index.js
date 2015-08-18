@@ -51,13 +51,19 @@ class ChartistGraph extends React.Component {
   }
 
   render() {
-    return React.DOM.div({className: 'ct-chart'})
+    var div_options = { className: 'ct-chart' };
+
+    if(this.props.hasOwnProperty("id")) {
+      div_options.id = this.props.id;
+    }
+    return React.DOM.div(div_options);
   }
 
 }
 
 ChartistGraph.propTypes = {
   type: React.PropTypes.string.isRequired,
+  id: React.PropTypes.string,
   data: React.PropTypes.object.isRequired,
   options: React.PropTypes.object,
   responsiveOptions: React.PropTypes.array
