@@ -18,8 +18,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var ChartistGraph = (function (_React$Component) {
-  _inherits(ChartistGraph, _React$Component);
+var _reactDom = require('react-dom');
+
+var ChartistGraph = (function (_Component) {
+  _inherits(ChartistGraph, _Component);
 
   function ChartistGraph() {
     _classCallCheck(this, ChartistGraph);
@@ -63,7 +65,7 @@ var ChartistGraph = (function (_React$Component) {
       if (this.chartist) {
         this.chartist.update(data, options, responsiveOptions);
       } else {
-        this.chartist = new Chartist[type](_react2['default'].findDOMNode(this), data, options, responsiveOptions);
+        this.chartist = new Chartist[type]((0, _reactDom.findDOMNode)(this), data, options, responsiveOptions);
 
         if (config.listener) {
           for (event in config.listener) {
@@ -79,22 +81,22 @@ var ChartistGraph = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var div_options = { className: 'ct-chart' };
-
-      if (this.props.hasOwnProperty("id")) {
-        div_options.id = this.props.id;
-      }
-      return _react2['default'].DOM.div(div_options);
+      var className = this.props.className ? ' ' + this.props.className : '';
+      var style = this.props.style ? this.props.style : {};
+      var id = this.props.id ? this.props.id : '';
+      return _react2['default'].createElement('div', { className: 'ct-chart' + className, style: style, id: id });
     }
   }]);
 
   return ChartistGraph;
-})(_react2['default'].Component);
+})(_react.Component);
 
 ChartistGraph.propTypes = {
   type: _react2['default'].PropTypes.string.isRequired,
   id: _react2['default'].PropTypes.string,
   data: _react2['default'].PropTypes.object.isRequired,
+  className: _react2['default'].PropTypes.string,
+  style: _react2['default'].PropTypes.object,
   options: _react2['default'].PropTypes.object,
   responsiveOptions: _react2['default'].PropTypes.array
 };

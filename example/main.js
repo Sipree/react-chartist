@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ChartistGraph from '../index';
 
 class Pie extends React.Component {
@@ -21,14 +22,15 @@ class Pie extends React.Component {
       }
     };
 
-    var type = 'Bar'
+    var type = 'Bar';
+    var aspectRatio = 'ct-octave';
 
     return (
       <div>
-        <ChartistGraph data={data} options={options} type={type} />
+        <ChartistGraph className={aspectRatio} data={data} options={options} type={type} />
       </div>
     )
   }
 }
 
-React.render(<Pie />, document.body)
+ReactDOM.render(<Pie />, document.getElementById('react-chart'))
