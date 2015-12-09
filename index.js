@@ -1,8 +1,9 @@
 'use strict';
 
-import React from 'react';
+import React, {Component} from 'react';
+import {findDOMNode} from 'react-dom';
 
-class ChartistGraph extends React.Component {
+class ChartistGraph extends Component {
 
   displayName: 'ChartistGraph'
 
@@ -35,7 +36,7 @@ class ChartistGraph extends React.Component {
     if (this.chartist) {
       this.chartist.update(data, options, responsiveOptions);
     } else {
-      this.chartist = new Chartist[type](React.findDOMNode(this), data, options, responsiveOptions);
+      this.chartist = new Chartist[type](findDOMNode(this), data, options, responsiveOptions);
 
       if (config.listener) {
         for (event in config.listener) {
@@ -51,12 +52,10 @@ class ChartistGraph extends React.Component {
   }
 
   render() {
-    var div_options = { className: 'ct-chart' };
-
-    if(this.props.hasOwnProperty("id")) {
-      div_options.id = this.props.id;
-    }
-    return React.DOM.div(div_options);
+    const className = this.props.className ? ' ' + this.props.className : ''
+    const style = this.props.style ? this.props.style : {};
+    const id = this.props.id ? this.props.id: '';
+    return (<div className={'ct-chart' + className} style={style} id={id} />);
   }
 
 }
@@ -65,6 +64,8 @@ ChartistGraph.propTypes = {
   type: React.PropTypes.string.isRequired,
   id: React.PropTypes.string,
   data: React.PropTypes.object.isRequired,
+  className: React.PropTypes.string,
+  style: React.PropTypes.object,
   options: React.PropTypes.object,
   responsiveOptions: React.PropTypes.array
 }
